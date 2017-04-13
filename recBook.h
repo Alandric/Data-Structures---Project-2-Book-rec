@@ -19,14 +19,15 @@ class recBook
 
 private:
 	
-	template <class K, class T>
-	template <typename TK, typename TV>
-	template <class TA, class KA>
+	
+	
+	template <class AJ, class JA>
 	void theMenu();
-	void extract_keys(std::map<K, T> &m, std::string nameFile);
-	void read_two_column_list(std::map<K, T> &m, std::string nameFile);
+	template <class A, class J>
+	void extract_keys(std::map<A, Jones> &m, std::string nameFile);
+	template <typename AJ, typename JA>
+	void read_two_column_list(std::map<A, Jones> &m, std::string nameFile);
 	int bookSearched(std::map <int, std::string> &list_book);
-	int theDistance(std::string s, std::string t);
 	int jaccard_index_similarity(std::map <int, int> &user1, std::map <int, int> &user2);
 	bool bookUpdated(std::map <int, std::map<int, int> > ratings, int idUser, int ISBN);
 	bool itemFound(std::map<TA, KA> &m, TA itemSearched);
