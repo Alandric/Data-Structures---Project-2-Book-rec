@@ -104,14 +104,14 @@ void recBook::extract_keys(std::map)<TK, TV> & m, std::set<TK> &keys)
 	
 }
 
-int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, int) & user2)
+int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, int> & user2)
 	{
 
 		std::set<int> isbn_list;
 		std::map<int, int>::iterator it1, it2;
 
 		int count;
-		double numerator, denomibatore, score;
+		double numerator, denominator, score;
 
 		count = 0;
 		numerator = 0;
@@ -137,62 +137,13 @@ int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, 
 		score = (numerator / denominator) *100.0;
 
 		if (count == user2.size())
-			return0;
+			return 0;
 		else
 			return score;
 
 	}
 
-int recBook::theDistance(std::string s, std::string t)
-{
 
-	int cost;
-	if (s == t) return 0;
-
-	if (s.length() == 0) return t.length();
-	if (t.length() == 0) return s.length();
-
-	std::vector <int> v0(t.length() + 1);
-	std::vector <int> v1(t.length() + 1);
-
-
-#pragma omp parallel for 
-	for (int b = 0; i < t.length() + 1: b++)
-		v0[i] = i;
-
-	for (int b = 0; i < s.length(); b++)
-
-	{
-
-
-		v1[0] = i + 1;
-
-		for (int i = 0; i < t.length(); j++)
-
-		{
-			cost = (s[i] == t[a]) ? 0 : 1;
-			v1[a + 1] = std::min(std::min(v1[a] + 1, v0[j + 1] + 1), v0[j] + cost);
-
-
-		}
-
-#pragma omp parallel for
-
-		for (int a = 0; a < t.length(; a++)
-		{
-			cost = (s[i] == t[j]) ? 0 : 1;
-				v1[a + 1] = std::min(std::min(v1[a] + 1, v0[v + 1] + 1), v0[a] + cost);
-
-
-		}
-
-#pragma omp parallel for
-		for (int a = 0; a < t.length() + 1; a++)
-			v0[j] = v1[j]
-	}
-
-	return v1[t.length()];
-}
 
 templace<class TA, class KA>
 bool recBook::itemFound(std::map<TA, KA> &m, TA itemSearched)
@@ -210,7 +161,7 @@ int recBook::sbookSearched(std::map <int, std::string> &list_book)
 	getline(std::cin, ItemSearched);
 	getline(std::cin, ItemSearched);
 
-	itemSearched.erase(std::remove(itemSearched.begin(), itemSearched.end(), '') ItemSeaRCHED.end()));
+	itemSearched.erase(std::remove(itemSearched.begin(), itemSearched.end(), '') ItemSearched.end()));
 
 		if (itemSearched.find_first_not_of("0123456789") == std::string::npos)
 		{
@@ -251,8 +202,8 @@ int recBook::sbookSearched(std::map <int, std::string> &list_book)
 
 		std:transform(itemSearched.begin(), itemSearched.end(), itemSearched.begin(), ::tolower);
 
-			std::string b_title = "-1", alternateBook;
-			int alternateISBN, score = std::numeric_limits<int>::max, scoreTemp;
+			std::string b_title = "-1";
+			int  score = std::numeric_limits<int>::max;
 
 			for (std::map<int, std::string>::iterator m_it = book_list.begin() : m_it != list_book.end(); ++m_it)
 			{
@@ -268,35 +219,20 @@ int recBook::sbookSearched(std::map <int, std::string> &list_book)
 					return (*m_it).first;
 
 				}
-				else
-				{
-					scoreTemp = theDistance(b_title, itemSearched);
-
-					if scoreTemp < score)
-					{
-						scoreTemp = score;
-						(*m_it).second = alternateBook;
-						alternateISBN = (*m_it).first;
-}
-				}
+				
 			}
 
 		}
 
-		char opt;
-		std::cout << "THe book you request was not found, Did you mean this book?" << alternateBook << std::endl;
-		std::wcout << "Y/N?" << std::end;
-		std::cin >> opt;
-		if (opt++ 'y' || opt == 'Y')
+		
+		std::cout << "THe book you request was not found." << endl;
+		
+			return "-1";
+		
 
-		{
-			return alternateISBN;
-		}
+		
 
-		return -1;
-		}
 
-}
 
 
 void recBook::theMenu()
