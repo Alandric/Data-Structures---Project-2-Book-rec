@@ -16,15 +16,15 @@ template <class K, class T>
 void recBook::read_two_column_list(std::map<K, T> &m, std::string nameFile)
 
 {
-	K key;
-	T data;
+	A key;
+	J data;
 	std::ifstream inputFile;
 	inputFile.open(nameFile);
 
 	if (!inputeFile)
 
 	{
-		std::cerr << "This file could not be opened" << nameFile << syd::endl;
+		std::cerr << "This file could not be opened" << nameFile << std::endl;
 		system("pause");
 		exit(1);
 
@@ -145,7 +145,7 @@ int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, 
 
 
 
-templace<class TA, class KA>
+template<class TA, class KA>
 bool recBook::itemFound(std::map<TA, KA> &m, TA itemSearched)
 
 {
