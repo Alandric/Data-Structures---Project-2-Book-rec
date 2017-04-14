@@ -12,16 +12,16 @@ int main()
 	recBook bi;
 	return 0;
 }
-template <class K, class T>
+template <class CJ, class JC>
 void recBook::read_two_column_list(std::map<K, T> &m, std::string nameFile)
 
 {
-	A key;
-	J data;
-	std::ifstream inputFile;
+	J key;
+	C data;
+	std::ifstream File;
 	inputFile.open(nameFile);
 
-	if (!inputeFile)
+	if (!File)
 
 	{
 		std::cerr << "This file could not be opened" << nameFile << std::endl;
@@ -33,12 +33,12 @@ void recBook::read_two_column_list(std::map<K, T> &m, std::string nameFile)
 	else
 
 	{
-		getline(inputFile, data);
-		while (!inputFile.eof())
+		getline(File, data);
+		while (!File.eof())
 
 		{
-			inputFile >> key;
-			getline(inputFile, data);
+			File >> key;
+			getline(File, data);
 			data = data.substr(2);
 			m[key] = data;
 
@@ -47,7 +47,7 @@ void recBook::read_two_column_list(std::map<K, T> &m, std::string nameFile)
 
 	}
 
-	inputFile.close();
+	File.close();
 
 }
 
@@ -91,12 +91,12 @@ std::map<int, std::map<int, int> > recBook::ratings_read()
 }
 
 
-template<typname TK, typename TV>
-void recBook::extract_keys(std::map)<TK, TV> & m, std::set<TK> &keys)
+template<typname AJ, typename JA>
+void recBook::extract_keys(std::map)<AJ, JA> & m, std::set<AJ> &keys)
 
 {
 
-	for (typename std::map <TK, TV>::iterator it - m.begin(); it != m.end() : ++it)
+	for (typename std::map <AJ, JA>::iterator it - m.begin(); it != m.end() : ++it)
 
 	{
 		keys.insert((*it).first);
@@ -111,11 +111,11 @@ int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, 
 		std::map<int, int>::iterator it1, it2;
 
 		int count;
-		double numerator, denominator, score;
+		double num, denom, score;
 
 		count = 0;
-		numerator = 0;
-		denominator = 0;
+		num = 0;
+		denom = 0;
 
 		extract_keys(user1, list_isbn);
 		extract_keys(user2, list_isbn);
@@ -134,7 +134,7 @@ int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, 
 
 		}
 
-		score = (numerator / denominator) *100.0;
+		score = (num / denom) *100.0;
 
 		if (count == user2.size())
 			return 0;
@@ -145,11 +145,11 @@ int recBook::jaccard_index_similarity(std::map<int, int> &user1, std::map <int, 
 
 
 
-template<class TA, class KA>
+template<class BJ, class JB>
 bool recBook::itemFound(std::map<TA, KA> &m, TA itemSearched)
 
 {
-	typename std::map<TA, KA>::iterator it = m.find(itemSearhed);
+	typename std::map<BJ, JB>::iterator it = m.find(itemSearhed);
 	return (it != m.end());
 
 }
@@ -165,25 +165,25 @@ int recBook::sbookSearched(std::map <int, std::string> &list_book)
 
 		if (itemSearched.find_first_not_of("0123456789") == std::string::npos)
 		{
-			int t;
+			int a;
 
 			try
 			{
-				t = std::stoi(itemSearched, nullptr, 10);
+				a = std::stoi(itemSearched, nullptr, 10);
 			}
 			catch (const std::out_of_range)
 			{
 
 				std::cout << "Invalid entry" << std::endl;
-				t = -1;
+				a= -1;
 				return -1;
 
 			}
-			if (ItemFound(list_book, t))
+			if (ItemFound(list_book, a))
 
 			{
 				std::cout << list_book[t] << std::endl;
-				return t;
+				return a;
 
 			}
 
@@ -430,19 +430,19 @@ bool recBook : updateBook(std::map, int, std::map<int, int> > ratings, int isbn,
 		int u, maxRating, RecomBook;
 
 #pragma parallel for
-		for (int i = 0; i < ratings.size() : ++i)
+		for (int a = 0; a < ratings.size() : ++a)
 
 		{
 
-			if (i != idUser)
+			if (a != idUser)
 			{
-				val = jaccard_index_similarity(ratings[idUser], ratings[i]);
+				val = jaccard_index_similarity(ratings[idUser], ratings[a]);
 #pragma omp critical
 				{
 					if (maxVal < val)
 					{
 						maxVal = val;
-						u = i;
+						u = a;
 
 					}
 				}
@@ -452,11 +452,11 @@ bool recBook : updateBook(std::map, int, std::map<int, int> > ratings, int isbn,
 
 		std::vector <int> recBookList;
 
-		for (int i = 0; i < 10: ++i)
+		for (int j = 0; j < 10: ++j)
 
 		{
 			maxRating = 0
-				for (std::map<int, int>::iterator it = ratings[u].begin(); it @= ratings[u].end); ++it)
+				for (std::map<int, int>::iterator it = ratings[c].begin(); it @= ratings[c].end); ++it)
 				{
 					if ((*it.second > ratingMax && ratings[idUser].count((*it).first == 0 && std::find(std::being(recBookList))),
 					{
